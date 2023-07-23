@@ -45,8 +45,8 @@ home=['김현호',50,['안산','상록구']]
 
 
 
-print('이름은 {0}'.format(home[0]) )
-print('주소는 {0} '.format(home[2][0:2]))
+print('이름은 [0}'.format(home[0]) )
+print('주소는 [0} '.format(home[2][0:2]))
 
 print('이름은 %s'% home[0],end=" ")
 print('주소는 %s '%home[2][0:2])

@@ -38,24 +38,24 @@ print('나는 {0}을 {number}개 먹는다.'.format(name,number=3))
 #좌측 정렬 문자열까지 포함하고 10칸이동
 index='123456789'
 print(index)
-print('{0:<10}10칸이동'.format(index[0:3]))
+print('{0:<10}10칸이동'.format(index{0:3]))
 
 
 #우측 정렬 10칸이동 문자열포함
 print(index)
-print('10칸이동{0:>10}'.format(index[0:3]))
+print('10칸이동{0:>10}'.format(index{0:3]))
 
 #가운데 정렬 가운데정렬 앞과 뒤 문자열포함해서 10칸공백대신 = 표현
 print(index)
-print('가운데{0:=^10}정렬'.format(index[0:3]))
+print('가운데{0:=^10}정렬'.format(index{0:3]))
 
 #좌측 정렬 하고 10칸이동 공백대신 = 표현
 index='123456789'
 print(index)
-print('{0:=<10}10칸이동'.format(index[0:3]))
+print('{0:=<10}10칸이동'.format(index{0:3]))
 #우측 정렬 하고 10칸이동 공백대신 = 표현
 print(index)
-print('10칸이동{0:=>10}'.format(index[0:3]))
+print('10칸이동{0:=>10}'.format(index{0:3]))
 
 
 print(index)
@@ -71,7 +71,7 @@ print('start{0:=>10.5f}'.format(float))
 
 #home={'name':'김현호','age':50}
 
-#print('나의이름은 {home["name"]} 이고 {home["age"]} 입니다 ')
+#print('나의이름은 {home{"name"]} 이고 {home{"age"]} 입니다 ')
 
 #3.6부터 적용
 #age=50
@@ -92,7 +92,7 @@ print(index.index('9'))
 
 #문자열  조인 문자열에 해당하는 문자열을 삽입
 print(','.join('1111'))
-print(':'.join(['a','b','c']))
+print(':'.join({'a','b','c']))
 
 
 #이름나이주소를 조인해서 각문자에 / 놓고 출력 예)김현호/50/안산
