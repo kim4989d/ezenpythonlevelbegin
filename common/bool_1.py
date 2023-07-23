@@ -13,7 +13,7 @@ print(2<1)
 print(bool('true'))
 print(bool(''))
 
-print(bool[1,2,3])
+#print(bool[1,2,3])
 #print(bool[]) False error 오류
 
 #1 true 0 false
