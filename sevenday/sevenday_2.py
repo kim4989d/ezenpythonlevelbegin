@@ -10,5 +10,21 @@ while True:
     if inputvalue == 'q':
         exit()
 
-    di.setdefault(i, inputvalue)
+    di.setdefault(i,inputvalue)
     print(di)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

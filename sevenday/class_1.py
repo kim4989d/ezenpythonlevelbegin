@@ -48,6 +48,7 @@ class python1304:
         self.result = result
         return self.result
 
+
 r1304 = python1304()
 print(r1304.sum())
 
