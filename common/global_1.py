@@ -13,9 +13,6 @@ class school:
         self.roomtype = roomtype
         self.roomcheck = roomcheck
 
-    @staticmethod
-    def printok():
-        global a
 
 
         while True:
