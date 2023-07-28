@@ -1,13 +1,11 @@
 def printend(input):
-    print(input,end=" ")
+    print(input, end=" ")
 
 
+for i in range(1, 100):
 
-for i in range(1,100):
-
-    match(i %2,i%3):
-
-        case (0,0):
+    match(i%2,i%3):
+        case (0, 0):
             printend(i)
 
         # case (0,_):
@@ -15,16 +13,10 @@ for i in range(1,100):
         # case(_,0):
         #     print('_ 0 true ')
 
-
 print('=' * 50)
-for i in range(1,10):
+for i in range(1, 10):
 
-    if i==8:
+    if i == 8:
         break
 
     print(i)
-
-
-
-
-
