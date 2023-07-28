@@ -1,8 +1,9 @@
 class school:
-    global a
-    a=[]
+    global room
+    room=[]
     global obinput
     obinput=[]
+
 
     @staticmethod
     def printe(input):
@@ -22,12 +23,13 @@ class school:
                 print("세자리를 입력 !!")
             else:
                 for i in sp:
-                    a.append(i)
+                    room.append(i)
 
-                schob = school(a[0], a[1], a[2])
+                schob = school(room[0], room[1], room[2])
                 obinput.append(schob)
 
                 for i in obinput:
+
                     print('=' * 100)
                     school.printe(f'룸번호:{i.roomnumber}')
                     school.printe(f'룸타입:{i.roomtype}')
@@ -35,5 +37,5 @@ class school:
                     print()
                     print('=' * 100)
 
-                a.clear()
+                room.clear()
 school.printok()
