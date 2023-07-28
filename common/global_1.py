@@ -1,13 +1,12 @@
 class school:
     global room
-    room=[]
+    room = []
     global obinput
-    obinput=[]
-
+    obinput = []
 
     @staticmethod
     def printe(input):
-        print(input,end="\t")
+        print(input, end="\t")
 
     def __init__(self, roomnumber, roomtype, roomcheck):
         self.roomnumber = roomnumber
@@ -15,11 +14,12 @@ class school:
         self.roomcheck = roomcheck
 
 
-
+    @staticmethod
+    def printroom():
         while True:
             inputvalue = input('룸번호 룸타입  룸 인원을 입력하세요 ex)room1301/html/5 \n')
             sp = inputvalue.split('/')
-            if len(sp) !=3:
+            if len(sp) != 3:
                 print("세자리를 입력 !!")
             else:
                 for i in sp:
@@ -29,7 +29,6 @@ class school:
                 obinput.append(schob)
 
                 for i in obinput:
-
                     print('=' * 100)
                     school.printe(f'룸번호:{i.roomnumber}')
                     school.printe(f'룸타입:{i.roomtype}')
@@ -38,4 +37,6 @@ class school:
                     print('=' * 100)
 
                 room.clear()
-school.printok()
+
+
+school.printroom()
