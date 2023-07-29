@@ -78,7 +78,12 @@ sell.Add()
 # print(sell.selltype())
 print('=' * 100)
 sell2 = commice('베스키라벤스2', '공장2', '대리점2', '엄마는외계인2')
+
+# sell1(sell2)
+#sell1=sell2  변환이 않됨
+
 print(sell2.Company())
+print(sell.Company())
 
 print(type(sell))
 print(type(sell2))
