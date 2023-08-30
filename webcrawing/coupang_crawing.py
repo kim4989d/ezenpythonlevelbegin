@@ -10,6 +10,7 @@ driver_path = './chromedriver'
 driver = webdriver.Chrome()
 
 
+
 # 웹페이지 열기
 driver.get('https://www.coupang.com/np/search?component=&q=%EC%95%84%EC%9D%B4%ED%8C%A8%EB%93%9C+%EC%97%90%EC%96%B4+5&channel=auto')
 
@@ -28,13 +29,14 @@ for product in soup.find_all('li', class_='search-product'):
     product_name = product.find("div", class_="name").text.strip()
     original_price = product.find("del", class_="base-price").text.strip()
     sale_price = product.find("strong", class_="price-value").text.strip()
-    rating = product.find("em", class_="rating").text.strip()
+    # rating = product.find("em", class_="rating").text.strip()
     review_count = product.find("span", class_="rating-total-count").text.strip()
     card_discount = product.find("span", class_="ccid-txt").text.strip() if product.find("span", class_="ccid-txt") else "N/A"
     reward_info = product.find("span", class_="reward-cash-txt").text.strip() if product.find("span", class_="reward-cash-txt") else "N/A"
     delivery_info = product.find("span", class_="arrival-info").text.strip()
 
     # 콘솔에 출력
+
     print('-'*40)
     print("상품 이름:", product_name)
     print("정가:", original_price)
