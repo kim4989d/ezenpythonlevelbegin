@@ -1,28 +1,37 @@
-import selenium
-
-
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from time import sleep
+
+# Chrome 웹 드라이버 생성
+driver = webdriver.Chrome()
+ 
+driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument",
+                       { "source": """ Object.defineProperty(navigator, 'webdriver', { get: () => undefined }) """ })     
+       
+url = "https://login.coupang.com/login/login.pang?rtnUrl=https%3A%2F%2Fmc.coupang.com%2Fssr%2Fdesktop%2Forder%2Flist"
+
+# url 로딩
+driver.get(url)
+
+# 로그인 정보input 
+driver_id = driver.find_element(By.ID,'login-email-input')
+driver_id.send_keys("kim4989d@naver.com")#문자열 형식으로 아이디 입력
+
+driver_pw = driver.find_element(By.ID,'login-password-input')
+driver_pw.send_keys("kim21541")#문자열 형식으로 비밀번호 입력
+
+# 로그인 버튼 클릭
+
+                                          
+# login = driver.find_element(By.CLASS_NAME,'login__button login__button--submit _loginSubmitButton login__button--submit-rds')
+
+
+login = driver.find_element(By.XPATH,"//button[@class='login__button login__button--submit _loginSubmitButton login__button--submit-rds']")
+# print('print ',login)
+# login = driver.find_elements_by_xpath("//button[@class='login__button login__button--submit _loginSubmitButton login__button--submit-rds']")
+login.click()
 
 
 
-
-def init_driver():
-    driver = uc.Chrome()
-    driver.get('https://velog.io')
-    return driver
-# 로그인 버튼을 눌러주고 로그인이 되서 다시 velog로 돌아올때까지 60초를 기다린다.
-def do_login(driver):
-    driver.find_element(By.XPATH,'//button[text()="로그인"]').click()
-    WebDriverWait(driver, 60).until(
-        EC.presence_of_element_located(
-            (By.XPATH, '//button[text()="새 글 작성"]')
-        )
-    )
-# main에서 실행하지 않으면 오류가 남
-# https://github.com/ultrafunkamsterdam/undetected-chromedriver/issues/486#issuecomment-1032009193 참조
-if  __name__  ==  "__main__" :
-    driver = init_driver()
-    do_login(driver)
-    # 당신의 코드를 아래에 적으세요.
+sleep(15)

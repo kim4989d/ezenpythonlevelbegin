@@ -4,6 +4,10 @@ from selenium.webdriver.common.by import By
 
 
 
+
+
+
+
 # 크롬 드라이버 경로 설정 (다운로드한 드라이버의 경로로 설정)
 #driver_path = '/project/driver/chromedriver_win32'
 driver_path = './chromedriver'
