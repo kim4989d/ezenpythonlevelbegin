@@ -134,5 +134,5 @@ for product in soup.find_all("li", class_="search-product"):
         print("기타:\n", spanarray)
 
 
-sleep(1000)
+# sleep(100)
 # driver.quit()
