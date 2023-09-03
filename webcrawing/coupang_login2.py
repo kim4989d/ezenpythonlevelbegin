@@ -68,7 +68,10 @@ product_list = driver.find_element(By.XPATH, "//ul[@id='productList']")
 soup = BeautifulSoup(product_list.get_attribute("outerHTML"), "html.parser")
 
 spanvalue = []
+strongvalue = []
 
+
+i=0
 # 광고 상품 제외하고 각 상품 정보 가져오기
 for product in soup.find_all("li", class_="search-product"):
     # 광고 상품인 경우 스킵
@@ -90,25 +93,34 @@ for product in soup.find_all("li", class_="search-product"):
             if product.find("span", class_="reward-cash-txt")
             else "N/A"
         )
-        delivery_info = product.find("span", class_="arrival-info").text.strip()
+        # delivery_info = product.find("span", class_="arrival-info").text.strip()
 
-        # products2=soup.find_all('div', class_='used-product-info')
-        # 해당 요소에서 모든 <span> 요소를 배열로 추출
-        # span_elements = products2.find_all('span')
 
-        # 추출한 <span> 요소들을 배열로 출력
-        # for span in span_elements:
-        #     spanvalue=span.text
-        # for product2 in soup.find_all("div", class_="used-product-info"):
-        #     etc_info=product2.find("span").text.strip() if product.find("span") else "N/A"
-        #     # etc_info2=product2.find("span").text.strip() if product.find("span") else "N/A"
-        # etc_info3=product2.find("span").text.strip() if product.find("span") else "N/A"
-        span_elements = product.find_all("span")
-        if product.find("span"): 
-            spanvalue = [span.text.strip() for span in span_elements]
+        div_elements = product.find_all('div', class_='used-product-info')
 
-        else:
-            "N/A"
+        # Now, let's find all span elements within the selected div elements
+        for div in div_elements:
+            span_elements = div.find_all('span')
+            strong_elements = div.find_all('strong')
+            
+            for span in span_elements:
+                print(span.text)  # Print the text content of each span element  soup.find_all("div", class_="used-product-info"):
+                spanvalue=span.text
+                
+            for strong in strong_elements:
+                print(strong.text)  # Print the text content of each span element  soup.find_all("div", class_="used-product-info"):
+                strongvalue=strong.text
+            
+            
+            
+            print(strong_elements.text)        
+                
+        # span_elements = product.find_all("span")
+        # if product.find("span"): 
+        #     spanvalue = [span.text.strip() for span in span_elements]
+
+        # else:
+        #     "N/A"
         
         # for span in span_elements:
         #     span_text = span.text.strip()
@@ -121,6 +133,8 @@ for product in soup.find_all("li", class_="search-product"):
     # 콘솔에 출력
 
     print("-" * 40)
+    i =i+1
+    print(f'{i}=>\n')
     print("상품 이름:", product_name)
     print("정가:", original_price)
     print("판매 가격:", sale_price)
@@ -128,10 +142,10 @@ for product in soup.find_all("li", class_="search-product"):
     print("리뷰 개수:", review_count)
     print("카드 할인 정보:", card_discount)
     print("적립 정보:", reward_info)
-    print("배송 정보:", delivery_info)
+    # print("배송 정보:", delivery_info)
 
-    for spanarray in spanvalue:
-        print("기타:\n", spanarray)
+    # for spanarray in spanvalue:
+    #     print("기타:\n", spanarray)
 
 
 # sleep(100)
