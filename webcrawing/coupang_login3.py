@@ -5,17 +5,12 @@ from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import pandas as pd
 
 
 
 
-
-# Chrome 웹 드라이버 경로 설정 (본인의 환경에 맞게 수정)
-
-
-# Chrome 웹 드라이버 생성
 driver = webdriver.Chrome()
-
 driver.execute_cdp_cmd(
     "Page.addScriptToEvaluateOnNewDocument",
     {
@@ -45,8 +40,6 @@ login = driver.find_element(
     By.XPATH,
     "//button[@class='login__button login__button--submit _loginSubmitButton login__button--submit-rds']",
 )
-# print('print ',login)
-# login = driver.find_elements_by_xpath("//button[@class='login__button login__button--submit _loginSubmitButton login__button--submit-rds']")
 login.click()
 
 # 로그인 후 페이지 로딩 대기 (적절한 방법으로 변경 가능)
@@ -56,11 +49,8 @@ login.click()
 # 검색 입력란과 같은 특정 요소를 대기하기 위해 명시적 대기 사용
 wait = WebDriverWait(driver, 10)
 wait.until(EC.presence_of_element_located((By.ID, 'headerSearchKeyword')))
-
-
-
-
 # 검색어 입력 및 검색 버튼 클릭
+
 
 search_input = driver.find_element(By.XPATH, "//input[@id='headerSearchKeyword']")
 search_input.send_keys("노트북")
@@ -75,14 +65,14 @@ for _ in range(1):  # 스크롤을 5번 내립니다. 필요에 따라 조정 �
 # sleep(10)
 
 
-# descriptions
+
 
 # 상품 리스트 가져오기
 product_list = driver.find_element(By.XPATH, "//ul[@id='productList']")
 
 # BeautifulSoup으로 파싱
 soup = BeautifulSoup(product_list.get_attribute("outerHTML"), "html.parser")
-product_data=[]
+product_data = []
 for product in soup.find_all("li", class_="search-product"):
     # 광고 상품인 경우 스킵
     # if product.find(class_="search-product__ad-badge"):
@@ -91,6 +81,7 @@ for product in soup.find_all("li", class_="search-product"):
         product_name = product.find("div", class_="name").text.strip()
         original_price = product.find("del", class_="base-price").text.strip()
         sale_price = product.find("strong", class_="price-value").text.strip()
+
         review_count = product.find("span", class_="rating-total-count").text.strip()
         card_discount = (
             product.find("span", class_="ccid-txt").text.strip()
@@ -119,17 +110,24 @@ for product in soup.find_all("li", class_="search-product"):
     except Exception as e:
         continue
 
-
-print('==' * 50)
+# print('==' * 50)
 # 수집한 데이터 출력
-for i, data in enumerate(product_data):
-    print("-" * 40)
-    print(f'{i + 1}번 =>\n')
-    for key, value in data.items():
-        print(f"{key}: {value}")
+# for i, data in enumerate(product_data):
+#     print("-" * 40)
+#     print(f'{i + 1}번 =>\n')
+#     for key, value in data.items():
+#         print(f"{key}: {value}")
 
 
+for i, printvalue in enumerate(product_data):
+    print(f'{i}번:{printvalue}')
 # sleep(2)
+
+df = pd.DataFrame(product_data)
+# Save the DataFrame to an Excel file
+
+# DataFrame을 Excel 파일로 저장하며, 열 인덱스는 제외하고 저장합니다 (index=False)
+df.to_excel('/project/product_data.xlsx', index=False, engine='openpyxl')
 
 # 드라이버 종료
 driver.quit()
