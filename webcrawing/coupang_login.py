@@ -34,4 +34,4 @@ login.click()
 
 
 
-sleep(10000)
+sleep(15)
