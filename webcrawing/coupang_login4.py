@@ -8,10 +8,8 @@ from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
 
 
-
 class coupang_login4:
-
-    def CoupangList(self,userid,passwd):
+    def CoupangList(self, userid, passwd):
         driver = webdriver.Chrome()
         driver.execute_cdp_cmd(
             "Page.addScriptToEvaluateOnNewDocument",
@@ -37,8 +35,10 @@ class coupang_login4:
         # 로그인 후 페이지 로딩 대기 (적절한 방법으로 변경 가능)
         # driver.implicitly_wait(10)
         wait = WebDriverWait(driver, 5)
-        wait.until(EC.presence_of_element_located((By.ID, 'headerSearchKeyword')))
-        search_input = driver.find_element(By.XPATH, "//input[@id='headerSearchKeyword']")
+        wait.until(EC.presence_of_element_located((By.ID, "headerSearchKeyword")))
+        search_input = driver.find_element(
+            By.XPATH, "//input[@id='headerSearchKeyword']"
+        )
         search_input.send_keys("노트북")
         search_input.send_keys(Keys.RETURN)
 
@@ -62,7 +62,9 @@ class coupang_login4:
                 original_price = product.find("del", class_="base-price").text.strip()
                 sale_price = product.find("strong", class_="price-value").text.strip()
 
-                review_count = product.find("span", class_="rating-total-count").text.strip()
+                review_count = product.find(
+                    "span", class_="rating-total-count"
+                ).text.strip()
                 card_discount = (
                     product.find("span", class_="ccid-txt").text.strip()
                     if product.find("span", class_="ccid-txt")
@@ -92,21 +94,19 @@ class coupang_login4:
         return product_data
 
 
-
-login4=coupang_login4()
-productlist=login4.CoupangList('kim4989d@naver.com','kim21541')
+login4 = coupang_login4()
+productlist = login4.CoupangList("kim4989d@naver.com", "kim21541")
 
 
 for i, printvalue in enumerate(productlist):
-    print(f'{i}번:{printvalue}')
+    print(f"{i}번:{printvalue}")
+    print('*' * 50)
 # sleep(2)
 
 df = pd.DataFrame(productlist)
 
 
-
 # DataFrame을 Excel 파일로 저장하며, 열 인덱스는 제외하고 저장합니다 (index=False)
-df.to_excel('/project/product_data.xlsx', index=True, engine='openpyxl')
+df.to_excel("/project/product_data.xlsx", index=True, engine="openpyxl")
 
 # 드라이버 종료
-
