@@ -32,6 +32,7 @@ class coupang_login4:
         )
         login.click()
 
+        # sleep(20)
         # 로그인 후 페이지 로딩 대기 (적절한 방법으로 변경 가능)
         # driver.implicitly_wait(10)
         wait = WebDriverWait(driver, 5)
@@ -76,6 +77,11 @@ class coupang_login4:
                     else "N/A"
                 )
 
+                min_price_tag = product.find("span", class_="prod-offer-banner__lowest__price").text.strip()
+                print("min_price_tag:", min_price_tag)
+                min_price = min_price_tag.find("strong").text.strip() if min_price_tag else "N/A"
+                # product_info["최저가격"] = min_price
+
                 # 데이터를 딕셔너리에 저장
                 product_info = {
                     "상품 이름": product_name,
@@ -84,6 +90,7 @@ class coupang_login4:
                     "리뷰 개수": review_count,
                     "카드 할인 정보": card_discount,
                     "적립 정보": reward_info,
+                    # "최저가격:":  min_price
                 }
 
                 # 리스트에 딕셔너리 추가
